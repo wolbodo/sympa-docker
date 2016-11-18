@@ -1,0 +1,19 @@
+#Transports
+
+sympa_command:
+  driver = pipe
+  command = "SYMPA_QUEUE sympa\@$domain"
+  return_fail_output
+  user = sympa
+
+sympa_queue:
+  driver = pipe
+  command = "SYMPA_QUEUE ${local_part}${local_part_suffix}\@$domain"
+  return_fail_output
+  user = sympa
+
+sympa_bounce:
+  driver = pipe
+  command = "SYMPA_BOUNCE ${local_part_prefix}${local_part}\@$domain"
+  return_fail_output
+  user = sympa

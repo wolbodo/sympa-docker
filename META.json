@@ -1,0 +1,338 @@
+{
+   "abstract" : "Sympa is a powerful multilingual List Manager",
+   "author" : [
+      "Sympa authors <sympa-authors@listes.renater.fr>"
+   ],
+   "dynamic_config" : 0,
+   "generated_by" : "CPAN::Meta version 2.143240",
+   "license" : [
+      "gpl_2",
+      "gpl_3"
+   ],
+   "meta-spec" : {
+      "version" : 2
+   },
+   "name" : "sympa",
+   "no_index" : {
+      "directory" : [
+         "po",
+         "t",
+         "www",
+         "xt"
+      ]
+   },
+   "optional_features" : {
+      "AuthCAS" : {
+         "description" : "CAS Single Sign-On client libraries. Required if you configure Sympa to delegate web authentication to a CAS server.",
+         "prereqs" : {
+            "runtime" : {
+               "requires" : {
+                  "AuthCAS" : "1.4"
+               }
+            }
+         }
+      },
+      "CGI-Fast" : {
+         "description" : "WWSympa, Sympa's web interface can run as a FastCGI (i.e. a persistent CGI). If you install this module, you will also need to install the associated FastCGI frontend, e.g. mod_fcgid for Apache.",
+         "prereqs" : {
+            "runtime" : {
+               "requires" : {
+                  "CGI::Fast" : "1.08",
+                  "FCGI" : "0.67"
+               }
+            }
+         }
+      },
+      "Crypt-CipherSaber" : {
+         "description" : "this module provides reversible encryption of user passwords in the database.  Useful when updating from old version with password reversible encryption, or if secure session cookies in non-SSL environments are required.",
+         "prereqs" : {
+            "runtime" : {
+               "requires" : {
+                  "Crypt::CipherSaber" : "0.50"
+               }
+            }
+         }
+      },
+      "Crypt-OpenSSL-X509" : {
+         "description" : "required to extract user certificates for SSL clients and S/MIME messages.",
+         "prereqs" : {
+            "runtime" : {
+               "requires" : {
+                  "Crypt::OpenSSL::X509" : "1.800.1"
+               }
+            }
+         }
+      },
+      "Crypt-SMIME" : {
+         "description" : "required to sign, verify, encrypt and decrypt S/MIME messages.",
+         "prereqs" : {
+            "runtime" : {
+               "requires" : {
+                  "Crypt::SMIME" : "0.15"
+               }
+            }
+         }
+      },
+      "DBD-CSV" : {
+         "description" : "CSV database driver, required if you include list members, owners or editors from CSV file.",
+         "prereqs" : {
+            "runtime" : {
+               "requires" : {
+                  "DBD::CSV" : "0"
+               }
+            }
+         }
+      },
+      "DBD-ODBC" : {
+         "description" : "ODBC database driver, required if you connect to a database via ODBC.",
+         "prereqs" : {
+            "runtime" : {
+               "requires" : {
+                  "DBD::ODBC" : "0"
+               }
+            }
+         }
+      },
+      "DBD-Oracle" : {
+         "description" : "Oracle database driver, required if you connect to a Oracle database.",
+         "prereqs" : {
+            "runtime" : {
+               "requires" : {
+                  "DBD::Oracle" : "1.02"
+               }
+            }
+         }
+      },
+      "DBD-Pg" : {
+         "description" : "PostgreSQL database driver, required if you connect to a PostgreSQL database.",
+         "prereqs" : {
+            "runtime" : {
+               "requires" : {
+                  "DBD::Pg" : "2.00"
+               }
+            }
+         }
+      },
+      "DBD-SQLite" : {
+         "description" : "SQLite database driver, required if you connect to a SQLite database.",
+         "prereqs" : {
+            "runtime" : {
+               "requires" : {
+                  "DBD::SQLite" : "1.31"
+               }
+            }
+         }
+      },
+      "DBD-Sybase" : {
+         "description" : "Sybase database driver, required if you connect to a Sybase database.",
+         "prereqs" : {
+            "runtime" : {
+               "requires" : {
+                  "DBD::Sybase" : "0.90"
+               }
+            }
+         }
+      },
+      "DBD-mysql" : {
+         "description" : "MySQL / MariaDB database driver, required if you connect to a MySQL (or MariaDB) database.",
+         "prereqs" : {
+            "runtime" : {
+               "requires" : {
+                  "DBD::mysql" : "4.008"
+               }
+            }
+         }
+      },
+      "Data-Password" : {
+         "description" : "Used for configureable hardening of passwords via the password_validation sympa.conf directive.",
+         "prereqs" : {
+            "runtime" : {
+               "requires" : {
+                  "Data::Password" : "1.07"
+               }
+            }
+         }
+      },
+      "Encode-Locale" : {
+         "description" : "Useful when running command line utilities in the console not supporting UTF-8 encoding",
+         "prereqs" : {
+            "runtime" : {
+               "requires" : {
+                  "Encode::Locale" : "1.02"
+               }
+            }
+         }
+      },
+      "IO-Socket-SSL" : {
+         "description" : "required when including members of a remote list",
+         "prereqs" : {
+            "runtime" : {
+               "requires" : {
+                  "IO::Socket::SSL" : "0.90"
+               }
+            }
+         }
+      },
+      "Mail-DKIM" : {
+         "description" : "required in order to use DKIM features (both for signature verification and signature insertion)",
+         "prereqs" : {
+            "runtime" : {
+               "requires" : {
+                  "Mail::DKIM::Verifier" : "0.37"
+               }
+            }
+         }
+      },
+      "Net-DNS" : {
+         "description" : "this is required if you set a value for \"dmarc_protection_mode\" which requires DNS verification",
+         "prereqs" : {
+            "runtime" : {
+               "requires" : {
+                  "Net::DNS" : "0.65"
+               }
+            }
+         }
+      },
+      "SOAP-Lite" : {
+         "description" : "required if you want to run the Sympa SOAP server that provides ML services via a \"web service\"",
+         "prereqs" : {
+            "runtime" : {
+               "requires" : {
+                  "SOAP::Lite" : "0.712"
+               }
+            }
+         }
+      },
+      "libnet" : {
+         "description" : "this is required if you set \"list_check_smtp\" sympa.conf parameter, used to check existing aliases before mailing list creation.",
+         "prereqs" : {
+            "runtime" : {
+               "requires" : {
+                  "Net::SMTP" : "0"
+               }
+            }
+         }
+      },
+      "perl-ldap" : {
+         "description" : "required to query LDAP directories. Sympa can do LDAP-based authentication ; it can also build mailing lists with LDAP-extracted members.",
+         "prereqs" : {
+            "runtime" : {
+               "requires" : {
+                  "Net::LDAP" : "0.40"
+               }
+            }
+         }
+      }
+   },
+   "prereqs" : {
+      "build" : {
+         "requires" : {
+            "perl" : "5.008"
+         }
+      },
+      "configure" : {
+         "requires" : {
+            "perl" : "5.008"
+         }
+      },
+      "develop" : {
+         "requires" : {
+            "CPAN::Meta" : "2.00"
+         }
+      },
+      "runtime" : {
+         "requires" : {
+            "Archive::Zip" : "1.05",
+            "CGI" : "3.51",
+            "Class::Singleton" : "1.03",
+            "DBI" : "1.48",
+            "DateTime::Format::Mail" : "0.28",
+            "DateTime::TimeZone" : "0.59",
+            "Digest::MD5" : "2.00",
+            "Encode" : "0",
+            "File::Copy::Recursive" : "0.36",
+            "File::NFSLock" : "0",
+            "File::Path" : "2.08",
+            "HTML::FormatText" : "0",
+            "HTML::StripScripts::Parser" : "1.03",
+            "HTML::TreeBuilder" : "0",
+            "IO::File" : "1.10",
+            "IO::Scalar" : "0",
+            "LWP::UserAgent" : "0",
+            "List::Util::XS" : "1.20",
+            "Locale::Messages" : "1.20",
+            "MHonArc::UTF8" : "2.6.18",
+            "MIME::Base64" : "3.03",
+            "MIME::Charset" : "1.011.3",
+            "MIME::EncWords" : "1.014",
+            "MIME::Lite::HTML" : "1.23",
+            "MIME::Tools" : "5.423",
+            "Mail::Address" : "1.70",
+            "Net::CIDR" : "0.16",
+            "Sys::Syslog" : "0.03",
+            "Template" : "2.21",
+            "Term::ProgressBar" : "2.09",
+            "Text::LineFold" : "2011.05",
+            "Time::HiRes" : "1.29",
+            "URI::Escape" : "3.28",
+            "Unicode::CaseFold" : "0.02",
+            "XML::LibXML" : "1.70",
+            "perl" : "5.008"
+         }
+      },
+      "test" : {
+         "requires" : {
+            "Archive::Zip" : "1.05",
+            "CGI" : "3.51",
+            "Class::Singleton" : "1.03",
+            "DBI" : "1.48",
+            "DateTime::Format::Mail" : "0.28",
+            "DateTime::TimeZone" : "0.59",
+            "Digest::MD5" : "2.00",
+            "Encode" : "0",
+            "File::Copy::Recursive" : "0.36",
+            "File::NFSLock" : "0",
+            "File::Path" : "2.08",
+            "HTML::FormatText" : "0",
+            "HTML::StripScripts::Parser" : "1.03",
+            "HTML::TreeBuilder" : "0",
+            "IO::File" : "1.10",
+            "IO::Scalar" : "0",
+            "LWP::UserAgent" : "0",
+            "List::Util::XS" : "1.20",
+            "Locale::Messages" : "1.20",
+            "MHonArc::UTF8" : "2.6.18",
+            "MIME::Base64" : "3.03",
+            "MIME::Charset" : "1.011.3",
+            "MIME::EncWords" : "1.014",
+            "MIME::Lite::HTML" : "1.23",
+            "MIME::Tools" : "5.423",
+            "Mail::Address" : "1.70",
+            "Net::CIDR" : "0.16",
+            "Sys::Syslog" : "0.03",
+            "Template" : "2.21",
+            "Term::ProgressBar" : "2.09",
+            "Test::Harness" : "0",
+            "Test::More" : "0",
+            "Text::LineFold" : "2011.05",
+            "Time::HiRes" : "1.29",
+            "URI::Escape" : "3.28",
+            "Unicode::CaseFold" : "0.02",
+            "XML::LibXML" : "1.70",
+            "perl" : "5.008"
+         }
+      }
+   },
+   "release_status" : "stable",
+   "resources" : {
+      "bugtracker" : {
+         "web" : "https://sourcesup.renater.fr/tracker/?group_id=23"
+      },
+      "homepage" : "https://www.sympa.org/",
+      "repository" : {
+         "type" : "svn",
+         "url" : "https://subversion.renater.fr/sympa"
+      }
+   },
+   "version" : "6.2.16"
+}

@@ -1,0 +1,25 @@
+### router/210_exim4-config_sympa
+#################################
+
+# This router handles aliasing using the sympa aliases.
+
+
+sympa_list_command:
+  driver = accept
+  condition        = ${if eqi{$local_part}{sympa}{1}{0}}
+  require_files = /etc/sympa/${lc::$domain}/robot.conf
+  retry_use_local_part
+  transport = sympa_command
+
+
+sympa_aliases:
+  debug_print = "R: sympa_aliases for $local_part@$domain"
+  driver = redirect
+  domains = +local_domains
+  allow_fail
+  allow_defer
+  data = ${lookup{$local_part}lsearch{/etc/mail/sympa_aliases}}
+  user = sympa
+  file_transport = address_file
+  pipe_transport = address_pipe
+  

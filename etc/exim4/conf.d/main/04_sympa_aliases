@@ -1,0 +1,9 @@
+# Aliases
+# Using aliases makes configuration easier to manage
+# These aliases are based on FreeBSD ports and can be changed for other systems
+
+SYMPA_EXPL   = /home/sympa/list_data
+SYMPA_ROBOT  = /etc/sympa
+SYMPA_QUEUE  = /home/sympa/bin/queue
+SYMPA_BOUNCE = /home/sympa/bin/bouncequeue
+SYMPA_HOME   = /etc/sympa
