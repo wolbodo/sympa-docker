@@ -4,22 +4,83 @@
 # This router handles aliasing using the sympa aliases.
 
 
+#sympa_list_command:
+#  driver = accept
+#  condition        = ${if eqi{$local_part}{sympa}{1}{0}}
+#  require_files = /etc/sympa/${lc::$domain}/robot.conf
+#  retry_use_local_part
+#  transport = sympa_command
+
+
+#sympa_aliases:
+#  debug_print = "R: sympa_aliases for $local_part@$domain"
+#  driver = redirect
+#  domains = +local_domains
+#  allow_fail
+#  allow_defer
+#  data = ${lookup{$local_part}lsearch{/etc/mail/sympa_aliases}}
+#  user = sympa
+#  file_transport = address_file
+#  pipe_transport = address_pipe
+#  
+#
+
+trusted_users = sympa
+
+
+# Routers
+# This accepts sympa@example.com as the command submission address
 sympa_list_command:
   driver = accept
   condition        = ${if eqi{$local_part}{sympa}{1}{0}}
-  require_files = /etc/sympa/${lc::$domain}/robot.conf
+  require_files = +SYMPA_HOME/${lc::$domain}/robot.conf
   retry_use_local_part
   transport = sympa_command
 
+list:
+  driver = accept
+  require_files = +SYMPA_EXPL/${lc::$domain}/${local_part}/config
+  retry_use_local_part
+  transport = sympa_queue
 
-sympa_aliases:
-  debug_print = "R: sympa_aliases for $local_part@$domain"
-  driver = redirect
-  domains = +local_domains
-  allow_fail
-  allow_defer
-  data = ${lookup{$local_part}lsearch{/etc/mail/sympa_aliases}}
-  user = sympa
-  file_transport = address_file
-  pipe_transport = address_pipe
-  
+listrequest:
+  driver = accept
+  local_part_suffix = -request
+  require_files = +SYMPA_EXPL/${lc::$domain}/${local_part}/config
+  retry_use_local_part
+  transport = sympa_queue
+
+listeditor:
+  driver = accept
+  local_part_suffix = -editor
+  require_files = +SYMPA_EXPL/${lc::$domain}/${local_part}/config
+  retry_use_local_part
+  transport = sympa_queue
+
+listsubscribe:
+  driver = accept
+  local_part_suffix = -subscribe
+  require_files = +SYMPA_EXPL/${lc::$domain}/${local_part}/config
+  retry_use_local_part
+  transport = sympa_queue
+
+listunsubscribe:
+  driver = accept
+  local_part_suffix = -unsubscribe
+  require_files = +SYMPA_EXPL/${lc::$domain}/${local_part}/config
+  retry_use_local_part
+  transport = sympa_queue
+
+listowner:
+  driver = accept
+  local_part_suffix = -owner
+  require_files = +SYMPA_EXPL/${lc::$domain}/${local_part}/config
+  retry_use_local_part
+  transport = sympa_bounce
+
+listbounce:
+  driver = accept
+  local_part_prefix = bounce+
+  require_files = +SYMPA_EXPL/${lc::$domain}/robot.conf
+  retry_use_local_part
+  transport = sympa_bounce

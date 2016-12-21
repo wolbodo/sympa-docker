@@ -77,7 +77,12 @@ RUN sed -i -e 's/(daemon)(.*)(console)/#/gm' /etc/rsyslog.conf
 RUN echo "nodaemon=true" >> /etc/rsyslog.conf
 
 RUN chown -R sympa:sympa /etc/sympa/
-RUN adduser www-data sympa
+
+# for nginx
+RUN adduser www-data sympa 		
+
+# for exim to read the files it needs to
+RUN adduser Debian-exim sympa
 
 # Initialize database
 RUN su - sympa -c "perl /home/sympa/bin/sympa.pl --health_check"
@@ -95,6 +100,16 @@ VOLUME 	/var/log/sympa \
 		/var/spool/sympa \
 		/var/lib/sympa \
 		/var/spool/nullmailer \
-		/home/sympa/db 
+		/home/sympa/db \
+		/home/sympa/list_data
 
 CMD supervisord -n
+
+
+## Post creation
+# After you've created the container and volumes you'll need to create a 
+# directory in in list_data like /home/sympa/list_data/list.domain.tld/. 
+# thiw will cause sympa to automatically use that directory and the exim4
+# search patterns to work.
+
+

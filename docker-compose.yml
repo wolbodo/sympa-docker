@@ -4,3 +4,12 @@ system:
    - "80:80"
    - "25:25"
   hostname: orange4.koffiedik.net
+  volumes:
+    - sympa_log:/var/log/sympa/
+    - sympa_etc_includes:/etc/sympa/includes/
+    - sympa_etc_shared:/etc/sympa/shared/
+    - sympa_spool_sympa:/var/spool/sympa/
+    - sympa_lib:/var/lib/sympa/
+    - sympa_spool_nullmailer:/var/spool/nullmailer/
+    - sympa_db:/home/sympa/db/
+    - sympa_list_data:/home/sympa/list_data/
