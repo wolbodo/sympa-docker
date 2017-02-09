@@ -13,3 +13,5 @@ system:
     - sympa_spool_nullmailer:/var/spool/nullmailer/
     - sympa_db:/home/sympa/db/
     - sympa_list_data:/home/sympa/list_data/
+    - sympa_archives:/home/sympa/arc/
+  restart: unless-stopped
