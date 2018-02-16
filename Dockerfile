@@ -27,8 +27,8 @@ RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen && echo "nl_NL.UTF-8 UTF-8" >> /
 RUN export LANGUAGE=nl_NL.UTF-8; export LANG=nl_NL.UTF-8; export LC_ALL=nl_NL.UTF-8; locale-gen nl_NL.UTF-8; DEBIAN_FRONTEND=noninteractive dpkg-reconfigure locales
 RUN adduser --disabled-password --gecos "" sympa
 
-RUN curl https://www.sympa.org/distribution/sympa-6.2.16.tar.gz | tar xz && \
-  mv sympa-6.2.16 /usr/local/src/sympa
+RUN curl https://www.sympa.org/distribution/releases/sympa-6.2.24.tar.gz | tar xz && \
+  mv sympa-6.2.24 /usr/local/src/sympa
 WORKDIR /usr/local/src/sympa
 
 RUN apt-get install -y cpanminus perl-doc libxml2 libxml2-dev 
