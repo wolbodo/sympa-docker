@@ -11,8 +11,8 @@ RUN apt-get install -y vim telnet
 RUN apt-get install -y \
 	rsyslog \
 	locales \
- 	openssh-server \
- 	curl \
+	openssh-server \
+	curl \
 	postgresql-client \
 	exim4-daemon-heavy \
 	nginx \
@@ -27,15 +27,15 @@ RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen && echo "nl_NL.UTF-8 UTF-8" >> /
 RUN export LANGUAGE=nl_NL.UTF-8; export LANG=nl_NL.UTF-8; export LC_ALL=nl_NL.UTF-8; locale-gen nl_NL.UTF-8; DEBIAN_FRONTEND=noninteractive dpkg-reconfigure locales
 RUN adduser --disabled-password --gecos "" sympa
 
-RUN curl https://www.sympa.org/distribution/releases/sympa-6.2.24.tar.gz | tar xz && \
-  mv sympa-6.2.24 /usr/local/src/sympa
+RUN curl -L https://github.com/sympa-community/sympa/releases/download/6.2.54/sympa-6.2.54.tar.gz | tar xz && \
+	mv sympa-6.2.54 /usr/local/src/sympa
 WORKDIR /usr/local/src/sympa
 
 RUN apt-get install -y cpanminus perl-doc libxml2 libxml2-dev 
 RUN apt-get install -y libglib2.0-data shared-mime-info libio-socket-ip-perl libio-socket-inet6-perl \
-						krb5-locales libmime-types-perl libsasl2-modules libhtml-form-perl libhttp-daemon-perl \
-						libxml-sax-expat-perl xml-core libfile-nfslock-perl libsoap-lite-perl \
-						libcrypt-ciphersaber-perl libmail-dkim-perl libfcgi-perl
+	krb5-locales libmime-types-perl libsasl2-modules libhtml-form-perl libhttp-daemon-perl \
+	libxml-sax-expat-perl xml-core libfile-nfslock-perl libsoap-lite-perl \
+	libcrypt-ciphersaber-perl libmail-dkim-perl libfcgi-perl
 
 RUN apt-get install -y \
 	gettext-base \
@@ -67,9 +67,9 @@ RUN mkdir -p /home/sympa/db && \
 	mkdir -p /etc/mail && \
 	touch /etc/mail/sympa_aliases && \
 	chown sympa /home/sympa/db \
-				/etc/sympa/sympa.conf \
-				/etc/mail/sympa_aliases \
-				/var/run/sympa
+	/etc/sympa/sympa.conf \
+	/etc/mail/sympa_aliases \
+	/var/run/sympa
 
 RUN sed -i -e 's/(daemon)(.*)(console)/#/gm' /etc/rsyslog.conf
 
@@ -95,13 +95,13 @@ EXPOSE 80
 
 
 VOLUME 	/var/log/sympa \
-		/etc/sympa/includes \
-		/etc/sympa/shared \
-		/var/spool/sympa \
-		/var/lib/sympa \
-		/var/spool/nullmailer \
-		/home/sympa/db \
-		/home/sympa/list_data
+	/etc/sympa/includes \
+	/etc/sympa/shared \
+	/var/spool/sympa \
+	/var/lib/sympa \
+	/var/spool/nullmailer \
+	/home/sympa/db \
+	/home/sympa/list_data
 
 CMD supervisord -n
 
@@ -109,7 +109,7 @@ CMD supervisord -n
 ## Post creation
 # After you've created the container and volumes you'll need to create a 
 # directory in in list_data like /home/sympa/list_data/list.domain.tld/. 
-# thiw will cause sympa to automatically use that directory and the exim4
+# this will cause sympa to automatically use that directory and the exim4
 # search patterns to work.
 
 

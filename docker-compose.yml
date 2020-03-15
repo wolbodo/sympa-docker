@@ -1,8 +1,8 @@
 system:
-  build: .
-  ports: 
-   - "80:80"
-   - "25:25"
+  image: wolbodo/sympa:v6.2.54
+  ports:
+    - "80:80"
+    - "25:25"
   hostname: orange4.koffiedik.net
   volumes:
     - sympa_log:/var/log/sympa/
